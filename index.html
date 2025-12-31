@@ -1,0 +1,227 @@
+TYP210504-9864-66127
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 💖</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(135deg, #ffd6e8, #fef6ff);
+  overflow: hidden;
+}
+
+.page {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  padding: 25px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page.active {
+  display: flex;
+  animation: fade 1s ease;
+}
+
+h1, p {
+  color: #ff4d88;
+}
+
+button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 18px;
+  background: #ff4d88;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+img {
+  width: 230px;
+  border-radius: 20px;
+  margin: 20px 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.secret {
+  font-size: 40px;
+  cursor: pointer;
+  margin: 15px;
+}
+
+.popup {
+  display: none;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  color: #ff4d88;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: float 5s infinite;
+}
+
+@keyframes fade {
+  from {opacity: 0; transform: scale(0.95);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+@keyframes float {
+  from {bottom: -20px; opacity: 1;}
+  to {bottom: 100%; opacity: 0;}
+}
+
+#typing {
+  max-width: 320px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 BACKGROUND MUSIC (CHANGE LINK IF YOU WANT) -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/30/audio_3d2ffb4a7f.mp3">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <h1>Hey you…</h1>
+  <p>Wait.<br>Don’t scroll.<br>I made this just for you 🐾</p>
+  <button onclick="go(2)">Okay, I’m curious 👀</button>
+  <div class="secret" onclick="alert('hehe you’re impatient 😼')">🐾</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <h1>LOOK AT THIS CUTIE 😭💗</h1>
+  <!-- CHANGE CAT IMAGE HERE -->
+  <img id="cat" src="https://i.imgur.com/JlUvsxa.png">
+  <p>This is your emotional support cat.</p>
+  <button onclick="changeCat()">Another cat 😼</button>
+  <button onclick="go(3)">I’m smiling already 💕</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <h1>Okay but wait…</h1>
+  <p>click around 👀</p>
+
+  <div>
+    <span class="secret" onclick="show('h')">💖</span>
+    <span class="secret" onclick="show('b')">📦</span>
+    <span class="secret" onclick="show('p')">🐾</span>
+  </div>
+
+  <div class="popup" id="h">I really love the way you exist.</div>
+  <div class="popup" id="b">✨ Put a photo or memory here ✨</div>
+  <div class="popup" id="p">You’re kind of my favorite person 😌</div>
+
+  <button onclick="go(4)">Go on 👉</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <h1>Now listen…</h1>
+  <p>I don’t always say this out loud,<br>but—</p>
+  <button onclick="go(5)">Say it 👀</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+  <h1 id="typing"></h1>
+  <button onclick="go(6)" style="display:none" id="next5">One last thing 💫</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+  <h1>Happy New Year 💖</h1>
+  <p>my favorite human</p>
+  <button onclick="go(7)">Wait—there’s more 👀</button>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+  <h1>If you ever forget how loved you are—</h1>
+  <p>come back and read this again 🤍</p>
+  <button onclick="go(1)">Replay 🔁</button>
+  <button onclick="alert('Hug sent 🫂')">Send me a hug</button>
+  <button onclick="changeCat()">One last cat 🐱</button>
+</div>
+
+<script>
+function go(n) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+  if(n === 5) typeText();
+}
+
+function show(id) {
+  document.querySelectorAll('.popup').forEach(p => p.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+
+const cats = [
+  "https://i.imgur.com/JlUvsxa.png",
+  "https://i.imgur.com/8Km9tLL.png",
+  "https://i.imgur.com/Z6a7Z8P.png"
+];
+
+function changeCat() {
+  document.getElementById('cat').src =
+    cats[Math.floor(Math.random()*cats.length)];
+}
+
+const text = `You make my ordinary days softer.
+You make me laugh when I don’t even feel like smiling.
+And somehow…
+you feel like home.`;
+
+let i = 0;
+function typeText() {
+  const el = document.getElementById("typing");
+  el.innerHTML = "";
+  i = 0;
+  const interval = setInterval(() => {
+    el.innerHTML += text.charAt(i);
+    i++;
+    if(i >= text.length) {
+      clearInterval(interval);
+      document.getElementById("next5").style.display = "block";
+    }
+  }, 50);
+}
+
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "💖";
+  h.style.left = Math.random()*100 + "vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+}, 400);
+</script>
+
+</body>
+</html>
